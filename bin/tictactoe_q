@@ -1,0 +1,85 @@
+#!/usr/bin/env ruby
+
+require_relative '../config/environment'
+
+
+PLAYER_TAG = {
+		'SMART': 'SMART',
+		'NORMAL': 'NORMAL'
+}
+$matrix = {}
+puts "Loading data .................."
+$matrix = TrainingDataHelper.loadMatrixFromJSON('db/training_data.json')
+puts "Data Loaded !!!!!!!!!!!!!!!!!!!"
+
+def startTraining(count)
+	player1 = StupidPlayer.new("X")
+	player2 = SmartPlayer.new("O")
+
+	training = TicTacToeTraining.new(player1, player2)
+	player2.setTag(PLAYER_TAG[:SMART])
+	training.setFirstPlayer(player1)
+	training.setTrainingGoal(count)
+	training.setGameMode("Training")
+
+	training.startTraining
+end
+
+
+def playWithComputer
+	player1 = HumanPlayer.new("X")
+	player2 = SmartPlayer.new("O")
+
+	play = TicTacToeTraining.new(player1, player2)
+	play.setFirstPlayer(player1)
+	play.setGameMode("Play")
+
+	player2.setTag(PLAYER_TAG[:SMART])
+
+	play.startTraining
+
+end
+
+def startSmartTraining(count)
+	player1 = SmartPlayer.new("X")
+	player2 = SmartPlayer.new("O")
+
+	training = TicTacToeTraining.new(player1, player2)
+	training.setFirstPlayer(player1)
+	training.setTrainingGoal(count)
+	training.setGameMode("Training")
+
+	player1.setTag(PLAYER_TAG[:NORMAL])
+	player2.setTag(PLAYER_TAG[:SMART])
+
+	training.startTraining
+end
+
+
+puts "Please choose a game mode: \n1. Play with AI\n2. Smart Training\n3. Normal Training"
+input = gets.strip
+
+case input
+when "1"
+	playWithComputer
+when "2"
+	
+	puts "Please set training count (10000 games/min): "
+	count = gets.strip.to_i
+
+	puts "Start at #{Time.now.strftime("%d/%m/%Y %H:%M")}"
+	startSmartTraining(count)
+	puts "End at #{Time.now.strftime("%d/%m/%Y %H:%M")}"
+when "3"
+	puts "Please set training count (10000 games/min): "
+	count = gets.strip.to_i
+	puts "Start at #{Time.now.strftime("%d/%m/%Y %H:%M")}"
+	startTraining(count)
+	puts "End at #{Time.now.strftime("%d/%m/%Y %H:%M")}"
+else
+	puts "Input is wrong!"
+end
+
+
+
+
