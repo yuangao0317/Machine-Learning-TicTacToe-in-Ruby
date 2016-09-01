@@ -16,7 +16,7 @@ cd Machine-Learning-TicTacToe-in-Ruby
 
 ruby bin/tictactoe_q
 
-Interface
+
 
 Please choose a game mode:
 
