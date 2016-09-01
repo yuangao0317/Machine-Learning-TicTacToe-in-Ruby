@@ -119,8 +119,8 @@ module AISystem
 			# 	end
 			# end
 			finalAction = nil
-			puts "current state key: #{currentStateKey}" if self.game.mode == "Play"
-			puts "current action: #{self.matrix[currentStateKey]}" if self.game.mode == "Play"
+			#puts "current state key: #{currentStateKey}" if self.game.mode == "Play"
+			#puts "current action: #{self.matrix[currentStateKey]}" if self.game.mode == "Play"
 			_initializeState(currentStateKey) unless self.matrix[currentStateKey]
 
 
@@ -173,7 +173,7 @@ module AISystem
 				finalAction = self.nextBestMove
 
 			else   # => X first move has no self.nextBestMove
-				puts "must be X first move here" if self.game.mode == "Play"
+				#puts "must be X first move here" if self.game.mode == "Play"
 				actions = self.matrix[currentStateKey].sort_by {|k, v| v}  # {'x|y': 1, 'x|y': 2}
 				actionWithMaxQ = actions.last[0]    # => 'x|y'
 				actionWithMinQ = actions.first[0]
@@ -286,7 +286,7 @@ module AISystem
 				if !self.nextBestMove
 
 					actions = self.matrix[self.newStateKey]   # [[:key, 1], [:key2, 2]] 
-					puts "actions: #{actions}" if self.game.mode == "Play"
+					#puts "actions: #{actions}" if self.game.mode == "Play"
 					unless actions.empty?  # => must has actions here, may be {}
 						actions = actions.sort_by {|k, v| v}
 
@@ -303,9 +303,9 @@ module AISystem
 
 					end	# => actions
 					
-					puts "#{self.tag} Generate a move for next turn: #{self.nextBestMove} on state #{self.newStateKey}" #if self.game.mode == "Play"
+					#puts "#{self.tag} Generate a move for next turn: #{self.nextBestMove} on state #{self.newStateKey}" #if self.game.mode == "Play"
 				else
-					puts "#{self.tag} Found a best move for next turn: #{self.nextBestMove} !!!!!!!!!!!" #if self.game.mode == "Play"
+					#puts "#{self.tag} Found a best move for next turn: #{self.nextBestMove} !!!!!!!!!!!" #if self.game.mode == "Play"
 				end # => !self.nextBestMove
 
 				  
@@ -418,9 +418,9 @@ module AISystem
 				self.matrix[self.lastStateKey][self.lastActionKey] = q.round(5)
 
 				# $matrix = self.matrix
-				puts "player: #{self.token} state: #{playerState}, reward: #{reward}, Q: #{q.round(5)}"# if self.game.mode == "Play"
+				#puts "player: #{self.token} state: #{playerState}, reward: #{reward}, Q: #{q.round(5)}"# if self.game.mode == "Play"
 				# puts "newStateKey: #{newStateKey},    newAction: #{actionWithMaxQ},   nextMoveQValue: #{newActionQValue}"
-				puts "lastPlayedStateKey: #{self.lastStateKey}, lastPlayedAction: #{self.lastActionKey}, lastActionQValue: #{lastActionQValue},  updatedQValue: #{self.matrix[self.lastStateKey][self.lastActionKey]}"# if self.game.mode == "Play"
+				#puts "lastPlayedStateKey: #{self.lastStateKey}, lastPlayedAction: #{self.lastActionKey}, lastActionQValue: #{lastActionQValue},  updatedQValue: #{self.matrix[self.lastStateKey][self.lastActionKey]}"# if self.game.mode == "Play"
 				# puts "depends on new state: #{self.newStateKey}, new action: #{actionWithMaxQ}, newActionMaxQValue: #{newActionQValue}" if self.game.mode == "Play"
 				# puts "last state: #{self.lastStateKey}, move: #{self.lastActionKey},  old Q: #{self.lastActionQValue}, updated to #{self.matrix[self.lastStateKey][self.lastActionKey]}"
 				# puts "=========================================================================================="

@@ -131,7 +131,6 @@ class TicTacToeTraining
   	####  state updated!!!!!!
   	# if @board.valid_move?(x, y)
   	if @board.board[y.to_i][x.to_i] == " "
-  		puts "#{self.currentPlayer.tag}" if self.currentPlayer.tag
   		@board.update(x, y, self.currentPlayer.token)    # =>  board or false
 
 
@@ -158,7 +157,6 @@ class TicTacToeTraining
 
 	  		
 	  		if self.currentPlayer.instance_of?(SmartPlayer) && self.currentPlayer.tag == PLAYER_TAG[:SMART]   # => smart player won
-	  			puts "SMART WON"
 		  		newStateKey = self.currentPlayer.getStateKeyOfCurrentBoard
 
 		  		self.currentPlayer.total += 1
@@ -176,7 +174,6 @@ class TicTacToeTraining
 			  	# 	opponent.setState(PLAYER_STATE[:LOSE], newStateKey) 
 		  		# end
 		  	elsif self.currentPlayer.tag != PLAYER_TAG[:SMART] && opponent.tag == PLAYER_TAG[:SMART]
-		  		puts "NORMAL WON"
 		  		# opponent = self.getOpponent(self.currentPlayer)		# => non smart player won
 		  		
 		  		# binding.pry
@@ -186,7 +183,7 @@ class TicTacToeTraining
 		  		opponent.setState(PLAYER_STATE[:LOSE], newStateKey)  		# => 
 		  		
 		  	end
-	  		puts "who won #{self.currentPlayer.tag}"
+
 	  		self.gameOverAndReset
 
 	  	elsif draw?(self.currentPlayer.token)
@@ -236,7 +233,6 @@ class TicTacToeTraining
 	  		#!!!!!!!!!!!!!!!!!! bug if two smart computers
 	  		# 
 	  		if !self.currentPlayer.instance_of?(SmartPlayer) && self.currentPlayer.tag != PLAYER_TAG[:SMART]   # => score the last move after op played
-	  			puts lastPlayer.tag
 	  			newStateKey = lastPlayer.getStateKeyOfCurrentBoard
 	  			lastPlayer.setState(PLAYER_STATE[:ALIVE], newStateKey)
 	  			# binding.pry
