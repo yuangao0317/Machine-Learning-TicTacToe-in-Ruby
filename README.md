@@ -9,19 +9,27 @@ This is my first side project in Flatiron School after I learn Ruby for 8 days. 
 ## How to play
 
 In terminal:
+
 git clone https://github.com/YuanGao0317/Machine-Learning-TicTacToe-in-Ruby.git
+
 cd Machine-Learning-TicTacToe-in-Ruby
+
 ruby bin/tictactoe_q
 
-Please choose a game mode: 
+Please choose a game mode:
+
 1. Play with AI
+
 2. Smart Training
+
 3. Normal Training
+
 
 There are three mode. 
 The first one allows you to play with the Machine Learning AI. If you delete the database(training_data.json), you can see how the AI learns to solve your strategy.
 The second one is a training process with two AIs.
 The third one is a training process with one AI and another normal AI.
+
 
 ## MIT License
 
